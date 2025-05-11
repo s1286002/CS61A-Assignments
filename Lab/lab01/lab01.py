@@ -1,5 +1,5 @@
 def digit(n, k):
-    """Return the digit that is k from the right of n for positive integers n and k.
+    r"""Return the digit that is k from the right of n for positive integers n and k.
 
     >>> digit(3579, 2)
     5
@@ -8,11 +8,11 @@ def digit(n, k):
     >>> digit(3579, 10)
     0
     """
-    return ____
+    return n // pow(10,k) % 10
 
 
 def middle(a, b, c):
-    """Return the number among a, b, and c that is not the smallest or largest.
+    r"""Return the number among a, b, and c that is not the smallest or largest.
     Assume a, b, and c are all different numbers.
 
     >>> middle(3, 5, 4)
@@ -26,11 +26,11 @@ def middle(a, b, c):
     >>> middle(30, 5, 40)
     30
     """
-    return ____
+    return a + b + c - min(a,b,c) -max(a,b,c)
 
 
 def falling(n, k):
-    """Compute the falling factorial of n to depth k.
+    r"""Compute the falling factorial of n to depth k.
 
     >>> falling(6, 3)  # 6 * 5 * 4
     120
@@ -42,10 +42,14 @@ def falling(n, k):
     1
     """
     "*** YOUR CODE HERE ***"
+    if k <= 0:
+        return 1
+    else:
+        return n * falling(n - 1, k - 1)
 
 
 def divisible_by_k(n, k):
-    """
+    r"""
     >>> a = divisible_by_k(10, 2)  # 2, 4, 6, 8, and 10 are divisible by 2
     2
     4
@@ -65,10 +69,17 @@ def divisible_by_k(n, k):
     0
     """
     "*** YOUR CODE HERE ***"
+    count = 0
+    for i in range(n):
+        if (i + 1) % k == 0:
+            print(i)
+            count += 1
+    return count
+
 
 
 def sum_digits(y):
-    """Sum all the digits of y.
+    r"""Sum all the digits of y.
 
     >>> sum_digits(10) # 1 + 0 = 1
     1
@@ -81,10 +92,13 @@ def sum_digits(y):
     6
     """
     "*** YOUR CODE HERE ***"
-
+    if y == 0:
+        return 0
+    else:
+        return y % 10 + sum_digits(y // 10)
 
 def double_eights(n):
-    """Return true if n has two eights in a row.
+    r"""Return true if n has two eights in a row.
     >>> double_eights(8)
     False
     >>> double_eights(88)
@@ -99,4 +113,9 @@ def double_eights(n):
     False
     """
     "*** YOUR CODE HERE ***"
-
+    if n == 0:
+        return False
+    else:
+        if n % 100 == 88:
+            return True
+        return double_eights(n // 10)
