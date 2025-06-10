@@ -1,15 +1,20 @@
 (define (square n) (* n n))
 
-(define (pow base exp) 'YOUR-CODE-HERE)
+(define (pow base exp)
+  (if (zero? exp)
+      1
+      (let ((half (pow base (floor (/ exp 2)))))
+        (if (even? exp)
+            (* half half)
+            (* base half half)))))
 
 (define (repeatedly-cube n x)
   (if (zero? n)
       x
-      (let (_________________)
-        (* y y y))))
+      (repeatedly-cube (- n 1) (* x x x))))
 
 (define (cddr s) (cdr (cdr s)))
 
-(define (cadr s) 'YOUR-CODE-HERE)
+(define (cadr s) (car (cdr s)))
 
-(define (caddr s) 'YOUR-CODE-HERE)
+(define (caddr s) (car (cddr s)))
